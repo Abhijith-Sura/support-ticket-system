@@ -1,0 +1,16 @@
+{
+  "name": "support-ticket-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mini Helpdesk Support Ticket Management System (MERN Stack)",
+  "scripts": {
+    "install:backend": "npm --prefix backend install",
+    "install:frontend": "npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "seed": "npm --prefix backend run seed",
+    "test:backend": "npm --prefix backend test",
+    "build:frontend": "npm --prefix frontend run build",
+    "lint:frontend": "npm --prefix frontend run lint"
+  }
+}
