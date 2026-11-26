@@ -7,6 +7,16 @@ let memoryServer = null;
  * Connect to MongoDB, with optional development fallback to mongodb-memory-server
  * when USE_MEMORY_DB=true or when local MongoDB is unavailable in development.
  */
+const autoSeedIfEmpty = async () => {
+  const User = require('../models/User');
+  const existingUsers = await User.countDocuments();
+  if (existingUsers === 0) {
+    const { seedDatabase } = require('../utils/seeder');
+    await seedDatabase({ reset: false, quiet: true });
+    console.log('Database seeded with demo users, tickets, comments, and activity logs.');
+  }
+};
+
 const connectDB = async () => {
   if (mongoose.connection.readyState === 1) {
     return mongoose.connection;
@@ -21,6 +31,11 @@ const connectDB = async () => {
       serverSelectionTimeoutMS: 5000
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+
+    if (process.env.AUTO_SEED === 'true') {
+      await autoSeedIfEmpty();
+    }
+
     return conn;
   } catch (error) {
     console.error(`MongoDB connection error: ${error.message}`);
@@ -44,14 +59,7 @@ const connectMemoryDB = async () => {
     const conn = await mongoose.connect(uri);
     console.log(`In-memory MongoDB started at ${uri}`);
 
-    // Auto-seed demo dataset when starting a fresh in-memory dev database
-    const User = require('../models/User');
-    const existingUsers = await User.countDocuments();
-    if (existingUsers === 0) {
-      const { seedDatabase } = require('../utils/seeder');
-      await seedDatabase({ reset: false, quiet: true });
-      console.log('In-memory MongoDB seeded with demo users, tickets, comments, and activity logs.');
-    }
+    await autoSeedIfEmpty();
 
     return conn;
   } catch (err) {

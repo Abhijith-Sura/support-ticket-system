@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -16,8 +18,11 @@ const notificationRoutes = require('./routes/notifications');
 
 const app = express();
 
+// Trust first proxy (required for Render/Koyeb/Nginx rate-limiting & IP headers)
+app.set('trust proxy', 1);
+
 // Security HTTP headers
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 // CORS configuration
 const allowedOrigins = config.corsOrigin === '*'
@@ -75,6 +80,16 @@ app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/tickets', ticketRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
+
+// Serve built React frontend in single-container production Docker image
+const publicDir = path.join(__dirname, 'public');
+if (fs.existsSync(path.join(publicDir, 'index.html'))) {
+  app.use(express.static(publicDir));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    return res.sendFile(path.join(publicDir, 'index.html'));
+  });
+}
 
 // Error Handling
 app.use(notFoundHandler);

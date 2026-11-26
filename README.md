@@ -167,20 +167,19 @@ docker compose up --build
 
 ---
 
-## Cloud Deployment Guide (Render + Vercel + MongoDB Atlas)
+## Free Cloud Docker Deployment (Render / Koyeb + MongoDB Atlas)
 
-1. **Database (MongoDB Atlas)**:
-   - Create a free M0 cluster on MongoDB Atlas, create a DB user, allow network access (`0.0.0.0/0` for PaaS or specific egress IPs), and copy the connection string (`MONGODB_URI`).
-2. **Backend (Render)**:
-   - Push this repository to GitHub.
-   - Create a new Web Service on Render (or use `render.yaml` Blueprint) with Root Directory `backend`.
-   - Build Command: `npm install --omit=dev` | Start Command: `node server.js`.
-   - Set environment variables: `NODE_ENV=production`, `MONGODB_URI`, `JWT_SECRET`, `CORS_ORIGIN=https://<your-vercel-app>.vercel.app`.
-   - Seed production data once via Render Shell: `node seed.js`.
-3. **Frontend (Vercel or Render Static Site)**:
-   - Import the repo into Vercel with Root Directory `frontend` (SPA routing is pre-configured in `frontend/vercel.json`).
-   - Set environment variable `VITE_API_URL=https://<your-render-backend>.onrender.com/api`.
-   - Deploy!
+The repository includes a multi-stage root `Dockerfile` that builds the React frontend and serves both the SPA and `/api/*` endpoints from a single container (configured in `render.yaml` for Render's **Free Docker** tier):
+
+1. **Database (MongoDB Atlas — Free M0):**
+   - Create a free M0 cluster on MongoDB Atlas, create a database user, add `0.0.0.0/0` under **Network Access**, and copy your `MONGODB_URI`.
+2. **Container Deployment (Render Free Docker / Koyeb Free Docker):**
+   - Connect `Abhijith-Sura/support-ticket-system` on **Render** (`New + -> Blueprint` using `render.yaml`, or `New + -> Web Service` with **Docker** runtime and Dockerfile path `./Dockerfile`).
+   - Select the **Free** plan (no credit card required).
+   - Set `MONGODB_URI` to your MongoDB Atlas connection string (`AUTO_SEED=true` automatically seeds demo users and 18 sample tickets if the database is empty).
+   - Deploy! Render builds the Docker image and serves both frontend and API on one HTTPS URL (`https://<your-service>.onrender.com`).
+
+*(Alternatively, deploy `frontend` separately to Vercel via `frontend/vercel.json` with `VITE_API_URL` pointing to your backend URL.)*
 
 ---
 
