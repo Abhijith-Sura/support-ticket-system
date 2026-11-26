@@ -1,6 +1,7 @@
 # REST API Documentation
 
-**Base URL:** `http://localhost:5000/api`  
+**Production Base URL:** `https://helpdesk-pro-mf18.onrender.com/api`  
+**Local Base URL:** `http://localhost:5000/api`  
 **Authentication:** Bearer JWT (`Authorization: Bearer <token>`)
 
 All responses use a standardized JSON envelope:

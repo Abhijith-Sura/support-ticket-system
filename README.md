@@ -2,6 +2,20 @@
 
 A full-stack **Support Ticket Management System (Mini Helpdesk)** built with **Node.js**, **Express.js**, **MongoDB**, and **React.js (Vite + Tailwind CSS)**. Users can submit and track support tickets, collaborate via comments, and receive real-time in-app notifications, while administrators can triage tickets, update statuses/priorities, inspect event-driven activity logs, and monitor system analytics.
 
+## Live Links & Submission Resources
+
+| Resource | Link |
+| --- | --- |
+| **Live Production App (Docker on Render)** | https://helpdesk-pro-mf18.onrender.com |
+| **API Health Check** | https://helpdesk-pro-mf18.onrender.com/api/health |
+| **GitHub Repository** | https://github.com/Abhijith-Sura/support-ticket-system |
+| **REST API Documentation** | [docs/API.md](https://github.com/Abhijith-Sura/support-ticket-system/blob/main/docs/API.md) |
+| **Database Design & ER Diagram** | [docs/DATABASE_DESIGN.md](https://github.com/Abhijith-Sura/support-ticket-system/blob/main/docs/DATABASE_DESIGN.md) |
+| **Postman Collection (v2.1)** | [docs/postman_collection.json](https://github.com/Abhijith-Sura/support-ticket-system/blob/main/docs/postman_collection.json) |
+
+> **Demo Credentials:** Admin (`admin@helpdesk.com` / `admin123`) • User (`user@helpdesk.com` / `user123`) *(also available via 1-click Demo buttons on `/login`)*.  
+> *Note: Hosted on Render's Free Docker tier — if the service has spun down after 15 minutes of inactivity, the initial request takes ~30–60s to wake up.*
+
 ---
 
 ## Key Features
@@ -50,9 +64,9 @@ A full-stack **Support Ticket Management System (Mini Helpdesk)** built with **N
 | --- | --- |
 | **Backend** | Node.js 20, Express.js, Mongoose ODM, JSON Web Tokens (`jsonwebtoken`), `bcryptjs`, `express-validator`, `helmet`, `cors`, `express-rate-limit`, `morgan`, `nodemailer` |
 | **Database** | MongoDB (with `mongodb-memory-server` optional fallback for local dev/testing) |
-| **Frontend** | React 19, Vite, React Router v7, Axios, Tailwind CSS v3, Lucide React, React Hot Toast |
+| **Frontend** | React 19, Vite, React Router v7, Axios, Tailwind CSS v3, Custom SVG Brand Logo & Domain Symbols (`BrandLogo`, `BrandSymbols`), Lucide React, React Hot Toast |
 | **Testing & Tooling** | Jest, Supertest, `mongodb-memory-server`, Oxlint |
-| **Deployment** | Docker, Docker Compose, Nginx, GitHub Actions CI, Render (`render.yaml`), Vercel (`vercel.json`) |
+| **Deployment** | Docker (root multi-stage `Dockerfile` + `docker-compose.yml`), Nginx, GitHub Actions CI, Render Free Docker (`render.yaml`), Vercel (`vercel.json`) |
 
 ---
 
@@ -61,15 +75,17 @@ A full-stack **Support Ticket Management System (Mini Helpdesk)** built with **N
 ```text
 support-ticket-system/
 ├── .github/workflows/ci.yml        # Automated CI for backend tests & frontend build/lint
+├── .dockerignore
+├── Dockerfile                      # Unified multi-stage production Docker build (Frontend + API)
 ├── docker-compose.yml              # Multi-container setup (MongoDB + Backend + Nginx Frontend)
-├── render.yaml                     # Render Blueprint for cloud deployment
+├── render.yaml                     # Render Free Docker Blueprint
 ├── README.md
 ├── docs/
 │   ├── API.md                      # REST API documentation
 │   ├── DATABASE_DESIGN.md          # MongoDB schema & ER design explanation
 │   └── postman_collection.json     # Ready-to-import Postman collection
 ├── backend/
-│   ├── config/                     # Environment config & MongoDB connection
+│   ├── config/                     # Environment config & MongoDB connection (auto-seed support)
 │   ├── controllers/                # Route handlers (auth, tickets, comments, admin, notifications)
 │   ├── middleware/                 # JWT auth, role guard, express-validator rules, error handler
 │   ├── models/                     # User, Ticket, Comment, ActivityLog, Notification schemas
@@ -81,8 +97,11 @@ support-ticket-system/
 │   ├── seed.js
 │   └── server.js
 └── frontend/
+    ├── public/
+    │   ├── favicon.svg             # Custom HelpDesk Pro SVG favicon
+    │   └── logo.svg                # Custom HelpDesk Pro brand logo SVG
     ├── src/
-    │   ├── components/             # Auth, Layout, Tickets, Comments, Admin, Common UI components
+    │   ├── components/             # Auth, Layout, Tickets, Comments, Admin, Custom BrandLogo/BrandSymbols
     │   ├── context/                # AuthContext provider
     │   ├── hooks/                  # useAuth, useTickets
     │   ├── pages/                  # 10 application pages
@@ -177,7 +196,7 @@ The repository includes a multi-stage root `Dockerfile` that builds the React fr
    - Connect `Abhijith-Sura/support-ticket-system` on **Render** (`New + -> Blueprint` using `render.yaml`, or `New + -> Web Service` with **Docker** runtime and Dockerfile path `./Dockerfile`).
    - Select the **Free** plan (no credit card required).
    - Set `MONGODB_URI` to your MongoDB Atlas connection string (`AUTO_SEED=true` automatically seeds demo users and 18 sample tickets if the database is empty).
-   - Deploy! Render builds the Docker image and serves both frontend and API on one HTTPS URL (`https://<your-service>.onrender.com`).
+   - Deploy! Render builds the Docker image and serves both frontend and API on one HTTPS URL (live deployment: https://helpdesk-pro-mf18.onrender.com).
 
 *(Alternatively, deploy `frontend` separately to Vercel via `frontend/vercel.json` with `VITE_API_URL` pointing to your backend URL.)*
 
