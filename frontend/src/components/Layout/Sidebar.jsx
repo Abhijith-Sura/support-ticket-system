@@ -1,25 +1,25 @@
 import { NavLink } from 'react-router-dom';
-import {
-  LayoutDashboard,
-  PlusCircle,
-  ShieldCheck,
-  Ticket,
-  X,
-} from 'lucide-react';
+import { X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import {
+  AdminShieldSymbol,
+  DashboardGridSymbol,
+  NewTicketSymbol,
+  TicketSymbol,
+} from '../Common/BrandSymbols';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const { isAdmin } = useAuth();
 
   const userNav = [
-    { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, end: true },
-    { to: '/tickets', label: 'My Tickets', icon: Ticket, end: false },
-    { to: '/tickets/new', label: 'New Ticket', icon: PlusCircle, end: true },
+    { to: '/dashboard', label: 'Dashboard', icon: DashboardGridSymbol, end: true },
+    { to: '/tickets', label: 'My Tickets', icon: TicketSymbol, end: false },
+    { to: '/tickets/new', label: 'New Ticket', icon: NewTicketSymbol, end: true },
   ];
 
   const adminNav = [
-    { to: '/admin', label: 'Admin Dashboard', icon: ShieldCheck, end: true },
-    { to: '/admin/tickets', label: 'All Tickets', icon: Ticket, end: false },
+    { to: '/admin', label: 'Admin Dashboard', icon: AdminShieldSymbol, end: true },
+    { to: '/admin/tickets', label: 'All Tickets', icon: TicketSymbol, end: false },
   ];
 
   const renderLink = (item) => {
@@ -46,7 +46,6 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Mobile backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-slate-900/40 lg:hidden"

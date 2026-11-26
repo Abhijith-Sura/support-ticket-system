@@ -1,5 +1,5 @@
-import { Shield } from 'lucide-react';
 import { formatDateTime, getInitials } from '../../utils/helpers';
+import { AdminShieldSymbol } from '../Common/BrandSymbols';
 
 const CommentList = ({ comments = [] }) => {
   if (comments.length === 0) {
@@ -41,7 +41,7 @@ const CommentList = ({ comments = [] }) => {
                     </span>
                     {isStaff && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-0.5 text-[10px] font-semibold text-indigo-700">
-                        <Shield className="h-2.5 w-2.5" />
+                        <AdminShieldSymbol className="h-3 w-3" />
                         Support Admin
                       </span>
                     )}

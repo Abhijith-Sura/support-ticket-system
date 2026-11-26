@@ -1,17 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  Bell,
-  CheckCheck,
-  LifeBuoy,
-  LogOut,
-  Menu,
-  Shield,
-  User as UserIcon,
-} from 'lucide-react';
+import { CheckCheck, LogOut, Menu, User as UserIcon } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { notificationService } from '../../services/notificationService';
 import { getInitials, timeAgo } from '../../utils/helpers';
+import BrandLogo from '../Common/BrandLogo';
+import { AdminShieldSymbol, BellAlertSymbol } from '../Common/BrandSymbols';
 
 const Navbar = ({ onMenuToggle }) => {
   const { user, isAdmin, logout } = useAuth();
@@ -105,14 +99,8 @@ const Navbar = ({ onMenuToggle }) => {
         >
           <Menu className="h-5 w-5" />
         </button>
-        <Link to={isAdmin ? '/admin' : '/dashboard'} className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm">
-            <LifeBuoy className="h-5 w-5" />
-          </div>
-          <div className="hidden sm:block">
-            <span className="text-base font-bold tracking-tight text-slate-900">HelpDesk</span>
-            <span className="ml-1 text-base font-semibold text-indigo-600">Pro</span>
-          </div>
+        <Link to={isAdmin ? '/admin' : '/dashboard'} className="flex items-center">
+          <BrandLogo size="sm" />
         </Link>
       </div>
 
@@ -128,7 +116,7 @@ const Navbar = ({ onMenuToggle }) => {
             aria-label="Notifications"
             className="relative rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors"
           >
-            <Bell className="h-5 w-5" />
+            <BellAlertSymbol className="h-5 w-5" />
             {unreadCount > 0 && (
               <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-bold text-white">
                 {unreadCount > 9 ? '9+' : unreadCount}
@@ -190,7 +178,7 @@ const Navbar = ({ onMenuToggle }) => {
             <p className="text-xs font-semibold text-slate-900 leading-tight">{user?.name}</p>
             <p className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 capitalize">
               {isAdmin ? (
-                <Shield className="h-3 w-3 text-indigo-600" />
+                <AdminShieldSymbol className="h-3.5 w-3.5 text-indigo-600" />
               ) : (
                 <UserIcon className="h-3 w-3 text-slate-400" />
               )}

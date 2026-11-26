@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Tag } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { adminService } from '../../services/adminService';
 import {
@@ -10,6 +10,7 @@ import {
 } from '../../utils/constants';
 import { formatDate, getErrorMessage } from '../../utils/helpers';
 import TicketCard from '../Tickets/TicketCard';
+import { CategorySymbol } from '../Common/BrandSymbols';
 
 const AdminTicketList = ({ tickets, onTicketUpdated }) => {
   const [updatingId, setUpdatingId] = useState(null);
@@ -96,7 +97,7 @@ const AdminTicketList = ({ tickets, onTicketUpdated }) => {
                         CATEGORY_COLORS[ticket.category] || CATEGORY_COLORS.General
                       }`}
                     >
-                      <Tag className="h-3 w-3" />
+                      <CategorySymbol category={ticket.category} className="h-3.5 w-3.5" />
                       {ticket.category}
                     </span>
                   </td>

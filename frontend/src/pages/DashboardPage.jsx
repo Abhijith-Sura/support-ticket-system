@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Clock, FolderOpen, PlusCircle, Ticket } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock, FolderOpen } from 'lucide-react';
 import AppLayout from '../components/Layout/AppLayout';
 import StatsCard from '../components/Admin/StatsCard';
 import TicketList from '../components/Tickets/TicketList';
 import Loading from '../components/Common/Loading';
 import ErrorMessage from '../components/Common/ErrorMessage';
 import EmptyState from '../components/Common/EmptyState';
+import { NewTicketSymbol, TicketSymbol } from '../components/Common/BrandSymbols';
 import { useAuth } from '../hooks/useAuth';
 import { ticketService } from '../services/ticketService';
 import { getErrorMessage } from '../utils/helpers';
@@ -75,7 +76,7 @@ const DashboardPage = () => {
             to="/tickets/new"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors"
           >
-            <PlusCircle className="h-4 w-4" />
+            <NewTicketSymbol className="h-4 w-4" />
             New Support Ticket
           </Link>
         </div>
@@ -90,7 +91,7 @@ const DashboardPage = () => {
               <StatsCard
                 title="Total Tickets"
                 value={stats?.totalTickets || 0}
-                icon={Ticket}
+                icon={TicketSymbol}
                 colorClass="bg-indigo-50 text-indigo-600"
               />
               <StatsCard
@@ -133,7 +134,7 @@ const DashboardPage = () => {
                       to="/tickets/new"
                       className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
                     >
-                      <PlusCircle className="h-4 w-4" />
+                      <NewTicketSymbol className="h-4 w-4" />
                       Create First Ticket
                     </Link>
                   }

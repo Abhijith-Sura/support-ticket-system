@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom';
 import {
   AlertTriangle,
   ArrowRight,
-  CheckCircle2,
   Clock,
-  Ticket,
   Users,
 } from 'lucide-react';
 import StatsCard from './StatsCard';
 import ActivityTimeline from '../Tickets/ActivityTimeline';
+import { EventPulseSymbol, TicketSymbol } from '../Common/BrandSymbols';
 import { TICKET_CATEGORIES, TICKET_PRIORITIES, TICKET_STATUSES } from '../../utils/constants';
 
 const BarRow = ({ label, count, total, barColor }) => {
@@ -54,13 +53,12 @@ const AdminDashboard = ({ stats }) => {
 
   return (
     <div className="space-y-6">
-      {/* Top KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatsCard
           title="Total Tickets"
           value={total}
           subtitle={`${byStatus.Open || 0} currently open`}
-          icon={Ticket}
+          icon={TicketSymbol}
           colorClass="bg-indigo-50 text-indigo-600"
         />
         <StatsCard
@@ -86,7 +84,6 @@ const AdminDashboard = ({ stats }) => {
         />
       </div>
 
-      {/* Breakdowns */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <div className="flex items-center justify-between">
@@ -142,7 +139,6 @@ const AdminDashboard = ({ stats }) => {
         </div>
       </div>
 
-      {/* Recent Event-Driven Activity Log */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -151,8 +147,8 @@ const AdminDashboard = ({ stats }) => {
               Live audit trail captured by the event-driven workflow
             </p>
           </div>
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700">
-            <CheckCircle2 className="h-3.5 w-3.5" />
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700">
+            <EventPulseSymbol className="h-3.5 w-3.5" />
             Event Stream Active
           </span>
         </div>

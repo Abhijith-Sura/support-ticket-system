@@ -1,6 +1,7 @@
-import { Activity, CheckCircle2, MessageSquare, Pencil, PlusCircle, RefreshCw } from 'lucide-react';
+import { CheckCircle2, MessageSquare, Pencil, PlusCircle, RefreshCw } from 'lucide-react';
 import { ACTION_LABELS } from '../../utils/constants';
 import { formatDateTime } from '../../utils/helpers';
+import { EventPulseSymbol } from '../Common/BrandSymbols';
 
 const getActionMeta = (action) => {
   switch (action) {
@@ -15,7 +16,7 @@ const getActionMeta = (action) => {
     case 'ticket.updated':
       return { icon: Pencil, color: 'text-slate-600 bg-slate-100' };
     default:
-      return { icon: Activity, color: 'text-slate-600 bg-slate-100' };
+      return { icon: EventPulseSymbol, color: 'text-slate-600 bg-slate-100' };
   }
 };
 

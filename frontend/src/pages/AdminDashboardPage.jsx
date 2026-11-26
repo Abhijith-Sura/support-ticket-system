@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Ticket } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import AppLayout from '../components/Layout/AppLayout';
 import AdminDashboard from '../components/Admin/AdminDashboard';
 import Loading from '../components/Common/Loading';
 import ErrorMessage from '../components/Common/ErrorMessage';
+import { TicketSymbol } from '../components/Common/BrandSymbols';
 import { adminService } from '../services/adminService';
 import { getErrorMessage } from '../utils/helpers';
 
@@ -62,7 +63,7 @@ const AdminDashboardPage = () => {
             to="/admin/tickets"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors"
           >
-            <Ticket className="h-4 w-4" />
+            <TicketSymbol className="h-4 w-4" />
             Manage All Tickets
             <ArrowRight className="h-4 w-4" />
           </Link>

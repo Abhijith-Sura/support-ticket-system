@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" fill="none">
+  <defs>
+    <linearGradient id="hpLogoMark" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="55%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="hpLogoSpark" x1="38" y1="12" x2="52" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#hpLogoMark)" />
+  <path
+    d="M17 22C17 19.7909 18.7909 18 21 18H43C45.2091 18 47 19.7909 47 22V27.5C44.5147 27.5 42.5 29.5147 42.5 32C42.5 34.4853 44.5147 36.5 47 36.5V42C47 44.2091 45.2091 46 43 46H21C18.7909 46 17 44.2091 17 42V36.5C19.4853 36.5 21.5 34.4853 21.5 32C21.5 29.5147 19.4853 27.5 17 27.5V22Z"
+    fill="#FFFFFF"
+    fill-opacity="0.96"
+  />
+  <path d="M27.5 32.5L30.8 35.8L37.5 28.5" stroke="#4F46E5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M46 13L47.6 16.4L51 18L47.6 19.6L46 23L44.4 19.6L41 18L44.4 16.4L46 13Z" fill="url(#hpLogoSpark)" />
+  <text x="74" y="39" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A">HelpDesk</text>
+  <text x="190" y="39" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#4F46E5">Pro</text>
+</svg>

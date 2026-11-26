@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Home, SearchX } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { NotFoundIllustration } from '../components/Common/BrandSymbols';
 
 const NotFoundPage = () => {
   const { isAuthenticated, isAdmin } = useAuth();
@@ -9,8 +10,8 @@ const NotFoundPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
       <div className="max-w-md w-full text-center space-y-5">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
-          <SearchX className="h-8 w-8" />
+        <div className="flex justify-center">
+          <NotFoundIllustration className="h-24 w-24" />
         </div>
         <div className="space-y-2">
           <p className="text-sm font-bold uppercase tracking-widest text-indigo-600">404 Error</p>

@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Tag } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import StatusBadge from './StatusBadge';
 import PriorityBadge from './PriorityBadge';
 import TicketCard from './TicketCard';
+import { CategorySymbol } from '../Common/BrandSymbols';
 import { CATEGORY_COLORS } from '../../utils/constants';
 import { formatDate } from '../../utils/helpers';
 
 const TicketList = ({ tickets, linkPrefix = '/tickets', showUser = false }) => {
   return (
     <>
-      {/* Mobile Card List */}
       <div className="grid grid-cols-1 gap-4 md:hidden">
         {tickets.map((ticket) => (
           <TicketCard
@@ -21,7 +21,6 @@ const TicketList = ({ tickets, linkPrefix = '/tickets', showUser = false }) => {
         ))}
       </div>
 
-      {/* Desktop Table */}
       <div className="hidden md:block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-slate-200">
@@ -82,7 +81,7 @@ const TicketList = ({ tickets, linkPrefix = '/tickets', showUser = false }) => {
                         CATEGORY_COLORS[ticket.category] || CATEGORY_COLORS.General
                       }`}
                     >
-                      <Tag className="h-3 w-3" />
+                      <CategorySymbol category={ticket.category} className="h-3.5 w-3.5" />
                       {ticket.category}
                     </span>
                   </td>

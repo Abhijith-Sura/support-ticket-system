@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Calendar, Tag, User } from 'lucide-react';
+import { Calendar, User } from 'lucide-react';
 import StatusBadge from './StatusBadge';
 import PriorityBadge from './PriorityBadge';
+import { CategorySymbol } from '../Common/BrandSymbols';
 import { CATEGORY_COLORS } from '../../utils/constants';
 import { formatDate } from '../../utils/helpers';
 
@@ -20,7 +21,7 @@ const TicketCard = ({ ticket, linkPrefix = '/tickets', showUser = false }) => {
               CATEGORY_COLORS[ticket.category] || CATEGORY_COLORS.General
             }`}
           >
-            <Tag className="h-3 w-3" />
+            <CategorySymbol category={ticket.category} className="h-3 w-3" />
             {ticket.category}
           </span>
         </div>

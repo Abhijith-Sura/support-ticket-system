@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Lock, Mail, Shield, User } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { getErrorMessage } from '../../utils/helpers';
+import { AdminShieldSymbol } from '../Common/BrandSymbols';
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -122,7 +123,6 @@ const LoginForm = () => {
         {submitting ? 'Signing in...' : 'Sign In'}
       </button>
 
-      {/* Quick Demo Credentials */}
       <div className="pt-3 border-t border-slate-100">
         <p className="text-xs font-medium text-slate-500 text-center mb-2.5">
           Quick Demo Sign-In Fill
@@ -141,7 +141,7 @@ const LoginForm = () => {
             onClick={() => fillDemo('admin')}
             className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors"
           >
-            <Shield className="h-3.5 w-3.5 text-indigo-600" />
+            <AdminShieldSymbol className="h-3.5 w-3.5 text-indigo-600" />
             Demo Admin
           </button>
         </div>

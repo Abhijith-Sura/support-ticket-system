@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { PlusCircle } from 'lucide-react';
 import AppLayout from '../components/Layout/AppLayout';
 import TicketFilters from '../components/Tickets/TicketFilters';
 import TicketList from '../components/Tickets/TicketList';
@@ -7,6 +6,7 @@ import Pagination from '../components/Common/Pagination';
 import Loading from '../components/Common/Loading';
 import ErrorMessage from '../components/Common/ErrorMessage';
 import EmptyState from '../components/Common/EmptyState';
+import { NewTicketSymbol } from '../components/Common/BrandSymbols';
 import { useTickets } from '../hooks/useTickets';
 
 const TicketsPage = () => {
@@ -35,7 +35,7 @@ const TicketsPage = () => {
             to="/tickets/new"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors"
           >
-            <PlusCircle className="h-4 w-4" />
+            <NewTicketSymbol className="h-4 w-4" />
             Create New Ticket
           </Link>
         </div>
@@ -55,7 +55,7 @@ const TicketsPage = () => {
                 to="/tickets/new"
                 className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
               >
-                <PlusCircle className="h-4 w-4" />
+                <NewTicketSymbol className="h-4 w-4" />
                 Create Ticket
               </Link>
             }

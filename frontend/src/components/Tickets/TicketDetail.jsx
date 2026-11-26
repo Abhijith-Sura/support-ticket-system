@@ -1,6 +1,7 @@
-import { Calendar, Edit3, Lock, Tag, Trash2, User } from 'lucide-react';
+import { Calendar, Edit3, Lock, Trash2, User } from 'lucide-react';
 import StatusBadge from './StatusBadge';
 import PriorityBadge from './PriorityBadge';
+import { CategorySymbol } from '../Common/BrandSymbols';
 import { CATEGORY_COLORS } from '../../utils/constants';
 import { formatDateTime, isTicketEditableByUser } from '../../utils/helpers';
 
@@ -19,7 +20,7 @@ const TicketDetail = ({ ticket, canEdit = true, onEdit, onDelete }) => {
                 CATEGORY_COLORS[ticket.category] || CATEGORY_COLORS.General
               }`}
             >
-              <Tag className="h-3 w-3" />
+              <CategorySymbol category={ticket.category} className="h-3.5 w-3.5" />
               {ticket.category}
             </span>
           </div>
